@@ -34,6 +34,7 @@
 - Improved audit recommendations
 - Added yearly savings calculations
 - Improved the result dashboard UI
+- Conducted 3 user interviews to understand AI tool spending behavior
 
 **What I learned:**
 - Learned conditional rendering in React
