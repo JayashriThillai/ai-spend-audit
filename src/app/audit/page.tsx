@@ -7,9 +7,14 @@ export default function AuditPage() {
   const [tool, setTool] = useState("ChatGPT");
   const [spend, setSpend] = useState("");
   const [teamSize, setTeamSize] = useState("");
+  const [plan, setPlan] = useState("Plus");
+  const [useCase, setUseCase] = useState("Coding");
   const [result, setResult] = useState<{
   recommendation: string;
   savings: number;
+  yearlySavings: number;
+  optimizedSpend: number;
+currentSpend: number;
 } | null>(null);
 function handleSubmit(e: React.FormEvent) {
   e.preventDefault();
@@ -65,12 +70,33 @@ useEffect(() => {
               className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700"
             >
               <option>ChatGPT</option>
-              <option>Claude</option>
-              <option>Cursor</option>
-              <option>GitHub Copilot</option>
+<option>Claude</option>
+<option>Cursor</option>
+<option>GitHub Copilot</option>
+<option>Gemini</option>
+<option>Anthropic API</option>
+<option>OpenAI API</option>
+<option>Windsurf</option>
             </select>
           </div>
+          <div>
+  <label className="block mb-2">
+    Plan Type
+  </label>
 
+  <select
+    value={plan}
+    onChange={(e) => setPlan(e.target.value)}
+    className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700"
+  >
+    <option>Free</option>
+    <option>Plus</option>
+    <option>Pro</option>
+    <option>Team</option>
+    <option>Enterprise</option>
+  </select>
+</div>
+            
           <div>
             <label className="block mb-2">
               Monthly Spend ($)
@@ -87,6 +113,23 @@ useEffect(() => {
               className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700"
             />
           </div>
+          <div>
+  <label className="block mb-2">
+    Primary Use Case
+  </label>
+
+  <select
+    value={useCase}
+    onChange={(e) => setUseCase(e.target.value)}
+    className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700"
+  >
+    <option>Coding</option>
+    <option>Writing</option>
+    <option>Research</option>
+    <option>Data Analysis</option>
+    <option>Mixed</option>
+  </select>
+</div>
 
           <div>
             <label className="block mb-2">
@@ -122,7 +165,62 @@ useEffect(() => {
     </p>
 
     <div className="text-3xl font-bold text-green-400">
-      Save ${result.savings}/month
+    {result && (
+  <div className="mt-8 bg-gray-900 p-6 rounded-xl border border-gray-700">
+
+    <div className="flex items-center justify-between mb-4">
+
+      <h2 className="text-2xl font-bold">
+        Audit Result
+      </h2>
+
+      <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">
+        Savings Found
+      </span>
+
+    </div>
+
+    <p className="mb-6 text-gray-300 text-lg">
+      {result.recommendation}
+    </p>
+
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 gap-4 mb-6">
+
+  <div className="bg-black/30 p-4 rounded-lg">
+    <p className="text-gray-400 text-sm">
+      Current Spend
+    </p>
+
+    <p className="text-2xl font-bold">
+      ${result.currentSpend}
+    </p>
+  </div>
+
+  <div className="bg-black/30 p-4 rounded-lg">
+    <p className="text-gray-400 text-sm">
+      Optimized Spend
+    </p>
+
+    <p className="text-2xl font-bold text-green-400">
+      ${result.optimizedSpend}
+    </p>
+  </div>
+
+</div>
+
+      <div className="text-4xl font-bold text-green-400">
+        Save ${result.savings}/month
+      </div>
+
+      <div className="text-xl text-gray-400">
+        ${result.yearlySavings}/year potential savings
+      </div>
+
+    </div>
+
+  </div>
+)}
     </div>
 
   </div>
