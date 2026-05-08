@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { generateAudit } from "@/lib/auditEngine";
+import { supabase } from "@/lib/supabase";
 export default function AuditPage() {
 
   const [tool, setTool] = useState("ChatGPT");
@@ -9,6 +10,7 @@ export default function AuditPage() {
   const [teamSize, setTeamSize] = useState("");
   const [plan, setPlan] = useState("Plus");
   const [useCase, setUseCase] = useState("Coding");
+  const [email, setEmail] = useState("");
   const [result, setResult] = useState<{
   recommendation: string;
   savings: number;
@@ -16,7 +18,7 @@ export default function AuditPage() {
   optimizedSpend: number;
 currentSpend: number;
 } | null>(null);
-function handleSubmit(e: React.FormEvent) {
+async function handleSubmit(e: React.FormEvent) {
   e.preventDefault();
 
   const result = generateAudit({
@@ -26,6 +28,18 @@ function handleSubmit(e: React.FormEvent) {
   });
 
   setResult(result);
+  await supabase.from("audits").insert([
+  {
+    email,
+    tool,
+    plan,
+    monthly_spend: Number(spend),
+    team_size: Number(teamSize),
+    use_case: useCase,
+    recommendation: result.recommendation,
+    savings: result.savings,
+  },
+]);
 }
 useEffect(() => {
 
@@ -147,6 +161,19 @@ useEffect(() => {
               className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700"
             />
           </div>
+          <div>
+  <label className="block mb-2">
+    Email Address
+  </label>
+
+  <input
+    type="email"
+    placeholder="you@example.com"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className="w-full p-3 rounded-lg bg-gray-900 border border-gray-700"
+  />
+</div>
 
           <button className="w-full bg-white text-black py-3 rounded-xl font-semibold hover:bg-gray-200 transition">
             Generate Audit
