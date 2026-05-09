@@ -49,3 +49,59 @@
 - Add database integration
 - Save audit reports
 - Add lead capture functionality
+
+## Day 3 — 2026-05-08
+
+**Hours worked:** 5
+
+**What I did:**
+- Created Supabase project and database
+- Added audits table for storing reports
+- Connected Next.js app to Supabase
+- Added email capture field
+- Stored audit reports in database
+- Added backend integration for persistent audit storage
+- Created TESTS.md documentation
+
+**What I learned:**
+- Learned how environment variables work
+- Learned how Supabase connects with frontend applications
+- Learned database insert operations and data storage concepts
+
+**Blockers / what I'm stuck on:**
+- Faced issues with Supabase Row Level Security
+- Had confusion while configuring API keys and environment variables
+
+**Plan for tomorrow:**
+- Add AI-generated summaries
+- Create shareable report pages
+- Improve overall product polish
+
+
+## Day 4 — 2026-05-09
+
+**Hours worked:** 5
+
+**What I did:**
+- Added AI-style summary generation
+- Created backend API route for summaries
+- Added dynamic summary display in results dashboard
+- Built shareable report URLs
+- Created dynamic report pages using route parameters
+- Connected report pages to Supabase data
+- Created PROMPTS.md documentation
+
+**What I learned:**
+- Learned how API routes work in Next.js
+- Learned dynamic routing using URL parameters
+- Learned how frontend and backend communicate using fetch requests
+
+**Blockers / what I'm stuck on:**
+- Faced issues while loading dynamic route params
+- Initially had trouble fetching reports correctly from database
+
+**Plan for tomorrow:**
+- Deploy application to Vercel
+- Add automated tests
+- Configure CI workflow
+- Improve responsiveness and final polish
