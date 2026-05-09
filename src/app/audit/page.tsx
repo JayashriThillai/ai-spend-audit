@@ -18,6 +18,7 @@ export default function AuditPage() {
   optimizedSpend: number;
 currentSpend: number;
 } | null>(null);
+const [summary, setSummary] = useState("");
 async function handleSubmit(e: React.FormEvent) {
   e.preventDefault();
 
@@ -28,6 +29,29 @@ async function handleSubmit(e: React.FormEvent) {
   });
 
   setResult(result);
+  const response = await fetch(
+  "/api/summary",
+  {
+    method: "POST",
+
+    headers: {
+      "Content-Type":
+        "application/json",
+    },
+
+    body: JSON.stringify({
+      tool,
+      spend,
+      teamSize,
+      recommendation:
+        result.recommendation,
+    }),
+  }
+);
+
+const data = await response.json();
+
+setSummary(data.summary);
   await supabase.from("audits").insert([
   {
     email,
@@ -242,6 +266,17 @@ useEffect(() => {
 
       <div className="text-xl text-gray-400">
         ${result.yearlySavings}/year potential savings
+        <div className="mt-6 p-4 bg-black/30 rounded-lg">
+
+  <h3 className="text-lg font-semibold mb-2">
+    AI Summary
+  </h3>
+
+  <p className="text-gray-300">
+    {summary}
+  </p>
+
+</div>
       </div>
 
     </div>
