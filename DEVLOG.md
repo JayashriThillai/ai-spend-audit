@@ -105,3 +105,30 @@
 - Add automated tests
 - Configure CI workflow
 - Improve responsiveness and final polish
+
+## Day 5 — 2026-05-10
+
+**Hours worked:** 5
+
+**What I did:**
+- Deployed the application publicly using Vercel
+- Configured production environment variables
+- Tested live deployment and database connectivity
+- Added GitHub Actions CI workflow
+- Added automated build checks on every push
+- Created METRICS.md documentation
+- Improved overall production readiness of the application
+
+**What I learned:**
+- Learned how deployment platforms like Vercel work
+- Learned how environment variables are managed in production
+- Learned how CI pipelines automate build verification
+
+**Blockers / what I'm stuck on:**
+- Initially faced deployment failure due to missing environment variables
+- Had confusion between deployment URLs and domain URLs in Vercel
+
+**Plan for tomorrow:**
+- Complete remaining business documentation
+- Final polish and responsiveness improvements
+- Verify all project requirements before submission
